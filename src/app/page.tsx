@@ -1,19 +1,15 @@
-// pages/index.tsx ou seu componente principal
-import TopBar from './components/TopBar/TopBar';
-import Header from './components/TopBar/Header';
-import WelcomeMessage from './components/Welcome/WelcomeMessage';
+import Header from "./components/Header";
+import TopBar from "./components/TopBar";
+import WelcomeMessage from "./components/WelcomeMessage";
 
 export default function Home() {
   return (
-    <div>
-      {/* TopBar */}
+    <div className="min-h-screen bg-gray-900 text-white">
+      {/* Barra Superior */}
       <TopBar />
-
-      {/* Header com imagem de fundo */}
-      <Header />
-
-      {/* Frase de Boas-Vindas */}
+      {/* Conteúdo da Página */}
       <WelcomeMessage />
+      <Header />
     </div>
   );
 }
