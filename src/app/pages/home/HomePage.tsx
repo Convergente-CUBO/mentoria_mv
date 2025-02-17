@@ -7,9 +7,16 @@ import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useRef, useState } from "react";
+import CarrouselMentorias from "@/app/components/mentorias/CarrouselMentorias";
+import MentoriaCard from "@/app/components/UI/MentoriaCard";
+import MentoresCarrousel from "@/app/components/mentores/CarrouselMentores";
+import CarrouselNoticias from "@/app/components/noticias/CarrouselNoticias";
 
-export default function Header() {
+
+export default function HomePage() {
   const swiperRef = useRef<any>(null);
+  const swiperRefNoticias = useRef<any>(null);
+
 
   const mentorias = [
     { id: 1, nome: "Mentoria em Liderança", imagem: "/assets/mentoria1.webp", horario: "14:00", data: "10/02/2025", status: "Em Andamento", tag: "Liderança" },
@@ -39,45 +46,41 @@ export default function Header() {
 
   ];
 
+
+
   const [categoriaSelecionada, setCategoriaSelecionada] = useState(categorias[0]);
 
   return (
     <>
+      <section
+        className="relative bg-cover bg-center bg-gray-800 bg-opacity-10 pt-[150px]" // Adicionando padding-top
+        style={{ backgroundImage: 'url("../assets/image 2.png")' }} // Caminho relativo ao diretório public
+      >
+        <div className="absolute inset-0 bg-black opacity-20"></div>
+
+        <div className="relative z-20 max-w-3xl px-6 py-16 md:py-22 text-white">
+          <div className="flex items-center justify-start px-10">
+            <div className="w-full max-w-xl ">
+              <p className="text-lg md:text-3xl leading-relaxed mb-2">
+                Olá mentorando
+              </p>
+              <h2 className="text-7xl text-nowrap font-bold leading-tight mb-4 text-left md:text-8xl">
+                Seja bem-vindo
+              </h2>
+              <p className="text-lg text-pretty md:text-3xl leading-relaxed mb-6 ">
+                Aqui você encontrará ferramentas e informações para melhorar sua eficiência. Aproveite ao máximo as nossas soluções.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
       <section className="py-12 px-4 md:px-16 bg-[#FFFFFF] text-black relative w-full">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-5xl font-bold mb-4">Suas Mentorias</h2>
           <div className="w-full max-w-[1800px] h-[2px] bg-[#D9D9D9] mx-auto rounded-full"></div>
         </div>
 
-        <div className="relative w-full max-w-[90vw] md:max-w-[1200px] lg:max-w-[1400px] xl:max-w-[1600px] mx-auto">
-          <button className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white shadow-md p-3 rounded-full hover:bg-gray-200 transition z-10"
-            onClick={() => swiperRef.current?.slidePrev()}>
-            <ChevronLeft className="w-6 h-6 text-gray-800" />
-          </button>
-
-          <Swiper modules={[Navigation, Pagination]} spaceBetween={30} slidesPerView={4} onSwiper={(swiper) => (swiperRef.current = swiper)}
-            pagination={{ clickable: true }} breakpoints={{ 640: { slidesPerView: 1 }, 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 }, 1280: { slidesPerView: 4 }, 1600: { slidesPerView: 5 } }}>
-            {mentorias.map((mentoria) => (
-              <SwiperSlide key={mentoria.id}>
-                <div className="bg-white rounded-lg shadow-md p-1">
-                  <img src={mentoria.imagem} alt={mentoria.nome} className="w-full h-52 object-cover rounded-t-lg" />
-                  <h3 className="text-lg font-semibold mt-2">{mentoria.nome}</h3>
-                  <p className="text-sm text-gray-500">Horário: {mentoria.horario}</p>
-                  <p className="text-sm text-gray-500">Data: {mentoria.data}</p>
-                  <p className={`text-sm font-semibold ${mentoria.status === "Em Andamento" ? "text-green-500" : "text-red-500"}`}>
-                    Status: {mentoria.status}
-                  </p>
-                  <span className="inline-block bg-blue-600 text-xs text-white rounded-full px-3 py-1 mt-2">{mentoria.tag}</span>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-
-          <button className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white shadow-md p-3 rounded-full hover:bg-gray-200 transition z-10"
-            onClick={() => swiperRef.current?.slideNext()}>
-            <ChevronRight className="w-6 h-6 text-gray-800" />
-          </button>
-        </div>
+        <CarrouselMentorias />
       </section>
 
       <section className="py-16 bg-[#ffffff] text-black">
@@ -116,19 +119,34 @@ export default function Header() {
           {/* Cards de mentorias */}
           <div className="md:w-2/3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
             {mentoriasGerais.map((mentoria) => (
-              <div key={mentoria.id} className="bg-[#F8F8F8] p-6 rounded-3xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <img src={mentoria.imagem} alt={mentoria.nome} className="w-full h-[250px] object-cover rounded-t-3xl mb-4" />
-                <div className="p-4 space-y-4">
-                  <h4 className="text-xl font-semibold text-gray-800">{mentoria.nome}</h4>
-                  <p className="text-gray-600">{mentoria.descricao}</p>
-                </div>
-              </div>
+              <MentoriaCard
+                key={mentoria.id}
+                nome={mentoria.nome}
+                imagem={mentoria.imagem}
+                horario={mentoria.horario}
+                data={mentoria.data}
+                status={mentoria.status}
+                tag={mentoria.tag}
+              />
             ))}
           </div>
 
         </div>
       </section>
 
+      <section className="py-16 bg-white text-black">
+        <div className="container mx-auto max-w-[1280px] lg:max-w-[1600px] xl:max-w-[1920px] px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Nossos Mentores</h2>
+            <div className="w-full max-w-[1800px] h-[2px] bg-[#D9D9D9] mx-auto rounded-full"></div>
+          </div>
+
+          <MentoresCarrousel />
+        </div>
+      </section>
+      <section className="py-16 bg-white text-black">
+        <CarrouselNoticias />
+      </section>
     </>
   );
 }

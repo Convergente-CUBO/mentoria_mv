@@ -1,15 +1,13 @@
-import Header from "./components/Header";
-import TopBar from "./components/TopBar";
-import WelcomeMessage from "./components/WelcomeMessage";
+
+import HomePage from "./pages/home/HomePage";
 
 export default function Home() {
-  return (
-    <div className="min-h-screen bg-gray-900 text-white">
-      {/* Barra Superior */}
-      <TopBar />
-      {/* Conteúdo da Página */}
-      <WelcomeMessage />
-      <Header />
-    </div>
-  );
+    return (
+        <div className="min-h-screen bg-gray-900 text-white">
+            {/* Barra Superior */}
+
+            {/* Conteúdo da Página */}
+            <HomePage />
+        </div>
+    );
 }

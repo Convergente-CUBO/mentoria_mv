@@ -37,8 +37,8 @@ export default function Footer() {
         </div>
 
       </div>
-      <div className="w-full max-w-[1800px] h-[1px] bg-[#F8F8F8] mx-auto rounded-full -mt-10"></div>
-
+      <div className="w-full max-w-[1800px] h-[2px] bg-[#D9D9D9] mx-auto rounded-full -mt-10"></div>
+      <h2 className="text-center mt-6">2025 Jeferson Sadocci - Carreira Plus</h2>
     </footer>
   );
 }
