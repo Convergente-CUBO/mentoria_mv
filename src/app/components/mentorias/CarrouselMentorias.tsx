@@ -7,7 +7,7 @@ import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useRef } from "react";
-import MentoriaCard from "../UI/MentoriaCard"; // Importando o componente de card
+import MentoriaCard from "../UI/Card"; // Importando o componente de card
 import Carrossel from "../UI/CarrouselGeral";
 
 export default function CarrouselMentorias() {

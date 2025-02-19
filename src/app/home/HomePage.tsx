@@ -7,10 +7,10 @@ import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useRef, useState } from "react";
-import CarrouselMentorias from "@/app/components/mentorias/CarrouselMentorias";
-import MentoriaCard from "@/app/components/UI/MentoriaCard";
-import MentoresCarrousel from "@/app/components/mentores/CarrouselMentores";
-import CarrouselNoticias from "@/app/components/noticias/CarrouselNoticias";
+import CarrouselMentorias from "../components/mentorias/CarrouselMentorias";
+import MentoriaCard from "../components/UI/Card";
+import MentoresCarrousel from "../components/mentores/CarrouselMentores";
+import CarrouselNoticias from "../components/noticias/CarrouselNoticias";
 
 
 export default function HomePage() {

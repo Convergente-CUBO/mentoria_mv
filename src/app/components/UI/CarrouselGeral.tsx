@@ -1,4 +1,3 @@
-// Carrossel.tsx
 "use client";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -18,10 +17,10 @@ const Carrossel: React.FC<CarrosselProps> = ({ items }) => {
     return (
         <div className="relative w-full max-w-[90vw] md:max-w-[1200px] lg:max-w-[1400px] xl:max-w-[1600px] mx-auto">
             <button
-                className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white shadow-md p-3 rounded-full hover:bg-gray-200 transition z-10"
+                className="absolute -left-9 top-1/2 transform -translate-y-1/3 bg-white shadow-md p-4 rounded-full hover:bg-gray-200 transition z-10"
                 onClick={() => swiperRef.current?.slidePrev()}
             >
-                <ChevronLeft className="w-6 h-6 text-gray-800" />
+                <ChevronLeft className="w-8 h-8 text-black" />
             </button>
 
             <Swiper
@@ -42,11 +41,12 @@ const Carrossel: React.FC<CarrosselProps> = ({ items }) => {
             </Swiper>
 
             <button
-                className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white shadow-md p-3 rounded-full hover:bg-gray-200 transition z-10"
+                className="absolute -right-9 top-1/2 transform -translate-y-1/3 bg-white shadow-md p-4 rounded-full hover:bg-gray-200 transition z-10"
                 onClick={() => swiperRef.current?.slideNext()}
             >
-                <ChevronRight className="w-6 h-6 text-gray-800" />
+                <ChevronRight className="w-8 h-8 text-black" />
             </button>
+           
         </div>
     );
 };

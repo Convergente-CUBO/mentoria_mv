@@ -3,7 +3,7 @@
 
 import React from "react";
 import Carrossel from "../UI/CarrouselGeral";
-import NoticiaCard from "./NoticiaCard";
+import NoticiaCard from "../UI/NoticiaCard";
 
 export default function NoticiaCarrousel() {
     const noticias = [
@@ -43,7 +43,7 @@ export default function NoticiaCarrousel() {
     const itensCarrossel = noticias.map((noticia) => (
         <NoticiaCard
             key={noticia.id}
-            imagem={noticia.imagem}
+            imagem={noticia.imagem} 
             tema={noticia.tema}
             descricao={noticia.descricao}
         />
