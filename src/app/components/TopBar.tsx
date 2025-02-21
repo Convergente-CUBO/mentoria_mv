@@ -5,7 +5,7 @@ import logo from "../../assets/Ativo 11 1.png"; // Verifique o caminho da imagem
 
 export default function TopBar() {
   return (
-    <div className="absolute top-0 w-full z-50 transition-all duration-300 bg-transparent">
+    <div className="absolute top-0 w-full z-50 bg-[#00365F]">{/* Ajustear o TOPBAR, para quando estiver na tela de HOME, ele ficar transparente, mas quando estiver em outras, ele mudar para essa cor detemrianda */}
       <div className="container mx-auto flex justify-between items-center px-2 py-4">
         {/* Logo */}
         <div className="flex items-center mt-2 ml-2">
