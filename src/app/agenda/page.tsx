@@ -14,9 +14,10 @@ import "primeicons/primeicons.css";
 export default function AgendaPage() {
   const [selectedDate, setSelectedDate] = useState<Nullable<Date>>(null);
 
-  const handleDateChange = (date: Date | null) => {
+  const handleDateChange = (date: Nullable<Date>) => { // Usando Nullable<Date>
     setSelectedDate(date);
   };
+
 
   return (
     <section className="relative pt-[100px] bg-white mixn-h-screen ">
@@ -39,7 +40,7 @@ export default function AgendaPage() {
 
         {/* Conteúdo das Sessões */}
         <section className="w-3/4">
-         
+
           <h2 className="text-xl text-black font-medium mb-4">
             {selectedDate
               ? selectedDate.toLocaleDateString("pt-BR", {
