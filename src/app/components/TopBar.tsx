@@ -21,18 +21,18 @@ export default function TopBar() {
         {/* Menu ou Ações */}
         <div className="flex-1 flex justify-center space-x-6">
           {/* Link para a Home */}
-          <li>
-            <Link href="/">Home</Link> {/* Vai para a página inicial */}
-          </li>
+          <button className="relative px-3 py-1 transition hover:after:content-[''] after:block after:w-full after:h-0.5 after:bg-blue-500 after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100">
+            <Link className="text-white" href="/">Home</Link> {/* Vai para a página inicial */}
+          </button>
 
           {/* Link para a Agenda */}
-          <li>
-            <Link href="/agenda">Agenda</Link> {/* Vai para a página inicial */}
-          </li>
+          <button className="relative px-3 py-1 transition hover:after:content-[''] after:block after:w-full after:h-0.5 after:bg-blue-500 after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100">
+            <Link className="text-white" href="/agenda">Agenda</Link> {/* Vai para a página inicial */}
+          </button>
 
-          {/* Botão de Mensagem (sem link) */}
-          <button className="relative px-3 py-1 transition text-white hover:after:content-[''] after:block after:w-full after:h-0.5 after:bg-blue-500 after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100">
-            Mensagem
+          {/* Botão de Mensagem */}
+          <button className="relative px-3 py-1 transition hover:after:content-[''] after:block after:w-full after:h-0.5 after:bg-blue-500 after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100">
+            <Link className="text-white" href="">Mensagem</Link> 
           </button>
         </div>
       </div>
