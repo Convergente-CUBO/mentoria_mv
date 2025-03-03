@@ -11,6 +11,7 @@ import CarrouselMentorias from "../components/mentorias/CarrouselMentorias";
 import MentoriaCard from "../components/UI/Card";
 import MentoresCarrousel from "../components/mentores/CarrouselMentores";
 import CarrouselNoticias from "../components/noticias/CarrouselNoticias";
+import Link from "next/link";
 
 
 export default function HomePage() {
@@ -94,12 +95,14 @@ export default function HomePage() {
 
             <div className="bg-gray-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
               <h3 className="text-2xl font-semibold mb-4 text-center text-gray-800">Mentorias em Destaque</h3>
+              <div className="w-full max-w-[1800px] h-[2px] bg-[#D9D9D9] mx-auto rounded-full"></div>
+
               <ul className="space-y-4">
                 {categorias.map((cat, index) => (
                   <li
                     key={index}
-                    className={`cursor-pointer px-6 py-3 rounded-lg text-lg font-semibold transition-colors duration-300 
-              ${categoriaSelecionada.nome === cat.nome ? "bg-blue-600 text-white" : "bg-gray-200 text-gray-700 hover:bg-blue-50"}`}
+                    className={`cursor-pointer px-6 py-3  text-lg font-semibold transition-colors duration-300 
+              ${categoriaSelecionada.nome === cat.nome ? "bg-blue-600 text-white" : "text-gray-700 hover:bg-blue-50"}`}
                     onClick={() => setCategoriaSelecionada(cat)}
                   >
                     {cat.nome}
@@ -109,8 +112,8 @@ export default function HomePage() {
 
               {/* Botão "Ver as mentorias" */}
               <div className="text-center mt-8">
-                <button className="bg-blue-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-700 transition duration-300 transform hover:scale-105">
-                  Ver as Mentorías
+                <button className="bg-red-500 text-white text-lg font-semibold px-8 py-4 rounded-lg shadow-md hover:bg-red-600 transition duration-300">
+                <Link href="/mentoriasGerais"> Ver todas as reuniões</Link> 
                 </button>
               </div>
             </div>
