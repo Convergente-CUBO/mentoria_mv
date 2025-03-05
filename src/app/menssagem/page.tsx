@@ -36,7 +36,7 @@ export default function MessagesPage() {
                 <input
                     type="text"
                     placeholder="Pesquisa"
-                    className="w-full p-2 mb-4 border rounded"
+                    className="w-full p-2 mb-4 border rounded text-black"
                 />
                 <div>
                     {messages.map((msg) => (
@@ -67,14 +67,14 @@ export default function MessagesPage() {
 
             {/* Área de conversa */}
             <div className="w-2/3 flex flex-col">
-                <div className="flex-1 p-4 overflow-y-auto bg-white">
+                <div className="flex-1 p-4 overflow-y-auto bg-white text-black">
                     {chatMessages.map((msg, index) => (
                         <div
                             key={index}
                             className={`flex ${msg.sender === "me" ? "justify-end" : "justify-start"} mb-2`}
                         >
                             <div
-                                className={`p-3 rounded-lg max-w-xs ${msg.sender === "me" ? "bg-blue-500 text-white" : "bg-gray-200"
+                                className={`p-3 rounded-lg max-w-xs ${msg.sender === "me" ? "bg-blue-500 text-black" : "bg-gray-200"
                                     }`}
                             >
                                 <p>{msg.text}</p>
@@ -91,7 +91,7 @@ export default function MessagesPage() {
                         value={inputMessage}
                         onChange={(e) => setInputMessage(e.target.value)}
                         placeholder="Comece a escrever..."
-                        className="flex-1 p-2 border rounded"
+                        className="flex-1 p-2 border rounded text-black"
                     />
                     <button
                         className="ml-2 bg-blue-500 text-white p-2 rounded"
