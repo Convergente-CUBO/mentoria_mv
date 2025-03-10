@@ -1,6 +1,7 @@
 "use client";
 
-import SessionCard from "../components/SessionCard";
+import SessionCard from "../components/UI/Session/SessionCard";
+
 
 const sessions = [
     { date: "2025-05-02", title: "Sessão de Mentoria 1", mentor: "Mentor A", status: "Próxima", descricao: "Descrição da sessão 1", badges: ["Carreira", "Liderança"], meetLink: "https://meet.google.com/abc-defg-hij", imagem: "/assets/mentoria1.webp" },

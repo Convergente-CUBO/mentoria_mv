@@ -1,4 +1,3 @@
-import SessionCard from "../components/SessionCard";
 
 export default function MentoriaDetalhe() {
     const mentoria = {
