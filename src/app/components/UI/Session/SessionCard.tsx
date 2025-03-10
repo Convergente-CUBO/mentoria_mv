@@ -1,4 +1,4 @@
-import MentorCard from "./UI/CardMentores";
+import MentorCard from "../CardMentores";
 
 interface SessionCardProps {
     date: string;
