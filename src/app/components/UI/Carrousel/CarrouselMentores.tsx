@@ -7,8 +7,8 @@ import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useRef, useState } from "react";
-import MentorCard from "../UI/CardMentores";
-import Carrossel from "../UI/CarrouselGeral";
+import MentorCard from "../CardMentores";
+import Carrossel from "../CarrouselGeral";
 
 export default function MentoresCarrousel() {
 
@@ -54,7 +54,7 @@ export default function MentoresCarrousel() {
 
 
     return (
-        <div className="container mx-auto max-w-[1280px] lg:max-w-[1600px] xl:max-w-[1920px] px-4">
+        <div className="relative w-full max-w-[90vw] mx-auto">
             <Carrossel items={itensCarrossel} />
         </div>
     );

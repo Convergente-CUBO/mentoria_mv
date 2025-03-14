@@ -2,8 +2,8 @@
 "use client";
 
 import React from "react";
-import Carrossel from "../UI/CarrouselGeral";
-import NoticiaCard from "../UI/NoticiaCard";
+import NoticiaCard from "../NoticiaCard";
+import Carrossel from "../CarrouselGeral";
 
 export default function NoticiaCarrousel() {
     const noticias = [
@@ -50,13 +50,7 @@ export default function NoticiaCarrousel() {
     ));
 
     return (
-        <div className="container mx-auto max-w-[1280px] lg:max-w-[1600px] xl:max-w-[1920px] px-4">
-            <div className="text-center mb-12">
-                <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Benefícios da Mentoria</h2>
-                <div className="w-full max-w-[1800px] h-[2px] bg-[#D9D9D9] mx-auto rounded-full"></div>
-            </div>
-
-            {/* Passamos a lista de itens para o Carrossel */}
+        <div className="relative w-full max-w-[90vw] mx-auto ">
             <Carrossel items={itensCarrossel} />
         </div>
     );

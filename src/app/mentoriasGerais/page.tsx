@@ -20,7 +20,7 @@ const MentoriasList = () => {
                 <h3 className="text-4xl text-center font-bold mb-4 text-black">Próximas Sessões</h3>
                 <div className="space-y-4">
                     {proximaSessions.map((session, index) => (
-                        <SessionCard key={index} {...session} />
+                        <SessionCard id={""} key={index} {...session} />
                     ))}
                 </div>
             </div>
@@ -29,7 +29,7 @@ const MentoriasList = () => {
                 <h3 className="text-4xl text-center font-bold mb-4 text-black">Finalizadas</h3>
                 <div className="space-y-4">
                     {finalizadasSessions.map((session, index) => (
-                        <SessionCard key={index} {...session} />
+                        <SessionCard id={""} key={index} {...session} />
                     ))}
                 </div>
             </div>

@@ -1,5 +1,4 @@
 import Link from 'next/link';
-
 interface SessionCardMinimalProps {
     date: string;
     title: string;
@@ -8,7 +7,7 @@ interface SessionCardMinimalProps {
     badges: string[];
     meetLink?: string;
     imagem: string;
-    id: string; // Adicione um ID para a mentoria
+    id: string;
 }
 
 export default function SessionCardMinimal({
