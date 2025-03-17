@@ -1,13 +1,16 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { SetStateAction, useState } from "react";
 import Link from "next/link";
 import SessionCard from "../components/UI/Session/SessionCard";
 import MentoresCarrousel from "../components/UI/Carrousel/CarrouselMentores";
-import CarrouselNoticias from "../components/UI/Carrousel/CarrouselNoticias";
+import CarrosselMentorias from "../components/UI/Carrousel/CarrouselMentorias";
 import Carrossel from "../components/UI/CarrouselGeral";
+import CarrouselNoticias from "../components/UI/Carrousel/CarrouselNoticias";
 
 export default function HomePage() {
+  const [currentPage, setCurrentPage] = useState(1);
+
   const mentoriasGerais = [
     {
       id: "1",
@@ -103,32 +106,18 @@ export default function HomePage() {
 
   const [categoriaSelecionada, setCategoriaSelecionada] = useState(categorias[0]);
 
-  // ... (seu código existente)
+  const itemsPerPage = 4; // Número de cards por página
 
-  const mentoriasCarrossel = mentoriasGerais.map((mentoria) => (
-    <SessionCard
-      key={mentoria.id}
-      id={mentoria.id}
-      date={`Data: ${mentoria.data}`}
-      title={mentoria.nome}
-      mentor={`Horário: ${mentoria.horario}`}
-      status={mentoria.status}
-      descricao={mentoria.descricao}
-      badges={[mentoria.tag]}
-      imagem={mentoria.imagem}
-      imagemClassName="h-[596px] object-cover" // Ajuste o tamanho da imagem aqui
-      containerClassName="bg-white rounded-lg shadow-md flex flex-col"
-      statusClassName="text-sm font-semibold"
-      titleClassName="text-lg font-semibold"
-      mentorClassName="text-sm"
-      descricaoClassName="text-sm"
-      badgeClassName="px-2 py-1 text-xs rounded-full bg-gray-200"
-      dateClassName="text-xs"
-      meetButtonClassName="inline-block text-sm"
-      detailsButtonClassName="px-3 py-1 text-xs rounded-md"
-      meetLink="https://meet.google.com/xyz"
-    />
-  ));
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = mentoriasGerais.slice(indexOfFirstItem, indexOfLastItem);
+
+  const totalPages = Math.ceil(mentoriasGerais.length / itemsPerPage);
+
+  const handlePageChange = (pageNumber: SetStateAction<number>) => {
+    setCurrentPage(pageNumber);
+  };
+
 
 
   return (
@@ -160,10 +149,10 @@ export default function HomePage() {
           <h2 className="text-3xl md:text-5xl font-bold mb-4">Suas Mentorias</h2>
           <div className="w-full max-w-screen h-[2px] bg-[#D9D9D9] rounded-full"></div>
         </div>
-        <Carrossel items={mentoriasCarrossel} />
+        <CarrosselMentorias />
       </section>
 
-      <section className="py-16 bg-[#ffffff] text-black">
+      <section className="py-16 bg-[#ffffff] text-black relative">
         <div className="container mx-auto max-w-[1280px] lg:max-w-[1600px] xl:max-w-[1920px] px-4 flex flex-col md:flex-row gap-8">
           <div className="md:w-1/3 space-y-8">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-800 leading-tight mb-2">Outras</h2>
@@ -177,7 +166,7 @@ export default function HomePage() {
                   <li
                     key={index}
                     className={`cursor-pointer px-6 py-3  text-lg font-semibold transition-colors duration-300
-                                            ${categoriaSelecionada.nome === cat.nome ? "bg-blue-600 text-white" : "text-gray-700 hover:bg-blue-50"}`}
+                                ${categoriaSelecionada.nome === cat.nome ? "bg-blue-600 text-white" : "text-gray-700 hover:bg-blue-50"}`}
                     onClick={() => setCategoriaSelecionada(cat)}
                   >
                     {cat.nome}
@@ -194,7 +183,7 @@ export default function HomePage() {
             </div>
           </div>
           <div className="md:w-2/3 grid grid-cols-2 gap-6">
-            {mentoriasGerais.map((mentoria) => (
+            {currentItems.map((mentoria) => (
               <SessionCard
                 key={mentoria.id}
                 id={mentoria.id}
@@ -205,14 +194,25 @@ export default function HomePage() {
                 descricao={mentoria.descricao}
                 badges={[mentoria.tag]}
                 imagem={mentoria.imagem}
-                imagemClassName="object-cover"
+                imagemClassName="h-32 object-cover"
                 containerClassName="bg-white rounded-lg shadow-md"
                 statusClassName={`text-sm font-semibold ${mentoria.status === "Em Andamento" ? "text-green-500" : "text-red-500"}`}
                 badgeClassName="inline-block bg-blue-600 text-xs text-white rounded-full px-3 py-1 mt-2"
-                meetButtonClassName="bg-blue-500 text-white px-3 rounded"
-                detailsButtonClassName="bg-gray-200"
+                meetButtonClassName="bg-blue-500 text-white px-3 rounded text-xs"
+                detailsButtonClassName="bg-gray-200 text-xs px-2 py-1"
                 meetLink="https://meet.google.com/xyz"
               />
+            ))}
+          </div>
+          <div className="flex justify-end mt-8 absolute bottom-0 right-0">
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNumber) => (
+              <button
+                key={pageNumber}
+                className={`mx-1 px-3 py-1 rounded ${currentPage === pageNumber ? "bg-blue-600 text-white" : "bg-gray-200"}`}
+                onClick={() => handlePageChange(pageNumber)}
+              >
+                {pageNumber}
+              </button>
             ))}
           </div>
         </div>
