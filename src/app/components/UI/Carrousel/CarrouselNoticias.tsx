@@ -41,16 +41,19 @@ export default function NoticiaCarrousel() {
 
     // Criamos uma lista de componentes NoticiaCard para passar para o Carrossel
     const itensCarrossel = noticias.map((noticia) => (
-        <NoticiaCard
-            key={noticia.id}
-            imagem={noticia.imagem} 
-            tema={noticia.tema}
-            descricao={noticia.descricao}
-        />
+        <div key={noticia.id} className="mx-2 p-1">
+            <NoticiaCard
+                key={noticia.id}
+                imagem={noticia.imagem}
+                tema={noticia.tema}
+                descricao={noticia.descricao}
+            />
+        </div>
+
     ));
 
     return (
-        <div className="relative w-full max-w-[90vw] mx-auto ">
+        <div className="relative p-4 md:p-10 w-full ">
             <Carrossel items={itensCarrossel} />
         </div>
     );
