@@ -8,14 +8,14 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useRef } from "react";
 
 interface CarrosselProps {
-    items: React.ReactNode[]; // Usamos React.ReactNode para permitir que qualquer componente seja passado (inclusive o NoticiaCard)
+    items: React.ReactNode[];
 }
 
 const Carrossel: React.FC<CarrosselProps> = ({ items }) => {
     const swiperRef = useRef<any>(null);
 
     return (
-        <div className="relative w-full max-w-[90vw] md:max-w-[1200px] lg:max-w-[1400px] xl:max-w-[1600px] mx-auto">
+        <div className="relative w-full mx-auto">
             <button
                 className="absolute -left-9 top-1/2 transform -translate-y-1/3 bg-white shadow-md p-4 rounded-full hover:bg-gray-200 transition z-10"
                 onClick={() => swiperRef.current?.slidePrev()}
@@ -46,7 +46,6 @@ const Carrossel: React.FC<CarrosselProps> = ({ items }) => {
             >
                 <ChevronRight className="w-8 h-8 text-black" />
             </button>
-           
         </div>
     );
 };

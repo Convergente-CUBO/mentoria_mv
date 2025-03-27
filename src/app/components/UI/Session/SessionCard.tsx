@@ -1,6 +1,8 @@
-import MentorCard from "../CardMentores";
+import React from "react";
+import Link from "next/link";
 
 interface SessionCardProps {
+    id: string;
     date: string;
     title: string;
     mentor: string;
@@ -9,13 +11,21 @@ interface SessionCardProps {
     badges: string[];
     meetLink?: string;
     imagem: string;
-    formato?: string;
-    publicoAlvo?: string;
-    atividadesProgramadas?: string[];
-    anexos?: string[];
+    imagemClassName?: string;
+    containerClassName?: string;
+    dateClassName?: string;
+    titleClassName?: string;
+    mentorClassName?: string;
+    statusClassName?: string;
+    descricaoClassName?: string;
+    badgesContainerClassName?: string;
+    badgeClassName?: string;
+    meetButtonClassName?: string;
+    detailsButtonClassName?: string;
 }
 
 export default function SessionCard({
+    id,
     date,
     title,
     mentor,
@@ -24,76 +34,49 @@ export default function SessionCard({
     badges,
     meetLink,
     imagem,
-    formato,
-    publicoAlvo,
-    atividadesProgramadas,
-    anexos,
+    imagemClassName = "",
+    containerClassName = "",
+    dateClassName = "",
+    titleClassName = "",
+    mentorClassName = "",
+    statusClassName = "",
+    descricaoClassName = "",
+    badgesContainerClassName = "",
+    badgeClassName = "",
+    meetButtonClassName = "",
+    detailsButtonClassName = "",
 }: SessionCardProps) {
     return (
-        <div className=" w-full mb-4 flex flex-col">
-            <div className="flex justify-between">
+        <div className={`flex flex-col rounded-lg shadow-md overflow-hidden ${containerClassName}`}>
+            <img src={imagem} alt={title} className={`w-full h-1/2 object-cover ${imagemClassName}`} />
+            <div className="p-4 flex flex-col justify-between">
                 <div>
-                    <p className="text-black font-semibold">{date}</p>
-                    <h3 className="text-black text-2xl font-bold mb-1">{title}</h3>
-                    <p className="text-black text-lg font-medium">{mentor}</p>
-                    <p className="text-black mb-2">{descricao}</p>
-                    <p className="text-black">{status}</p>
-                    <div className="flex flex-wrap gap-2 mt-2">
+                    <p className={`text-sm font-semibold mb-1 ${statusClassName}`}>{status}</p>
+                    <h3 className={`text-lg font-semibold mb-2 ${titleClassName}`}>{title}</h3>
+                    <p className={`text-sm mb-2 ${descricaoClassName}`}>{descricao}</p>
+                    <p className={`text-sm mb-1 ${mentorClassName}`}>{mentor}</p>
+                    <div className={`flex flex-wrap gap-2 mb-2 ${badgesContainerClassName}`}>
                         {badges.map((badge, index) => (
-                            <span
-                                key={index}
-                                className="bg-blue-200 text-blue-800 px-3 py-1 text-sm rounded-full font-medium"
-                            >
+                            <span key={index} className={`px-2 py-1 text-xs rounded-full bg-gray-200 ${badgeClassName}`}>
                                 {badge}
                             </span>
                         ))}
                     </div>
-                </div>
-                {/* Use o MentorCard aqui */}
-                <MentorCard nome={mentor} imagem={imagem} />
-            </div>
-            <div className="flex justify-end items-center mt-4">
-                {typeof meetLink === 'string' && meetLink.trim() !== '' && (
-                    <a href={meetLink} target="_blank" rel="noopener noreferrer">
-                        <button className="bg-green-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-green-600 transition">
+                    <p className={`text-xs mb-2 ${dateClassName}`}>{date}</p>
+                    {meetLink && (
+                        <a href={meetLink} target="_blank" rel="noopener noreferrer" className={`inline-block mb-2 ${meetButtonClassName}`}>
                             Google Meet
+                        </a>
+                    )}
+                </div>
+                <div className="flex justify-end">
+                    <Link href={`/detalhes/${id}`}>
+                        <button className={`px-4 py-2 text-sm font-semibold rounded-md ${detailsButtonClassName}`}>
+                            Mais Detalhes
                         </button>
-                    </a>
-                )}
+                    </Link>
+                </div>
             </div>
-            {/* Novas seções */}
-            {formato && (
-                <div className="mt-4">
-                    <h2 className="text-lg text-black font-semibold mb-2">Formato:</h2>
-                    <p className="text-gray-600 text-black mb-4">{formato}</p>
-                </div>
-            )}
-            {publicoAlvo && (
-                <div className="mt-4">
-                    <h2 className="text-lg text-black font-semibold mb-2">Voltado para:</h2>
-                    <p className="text-gray-600 mb-4">{publicoAlvo}</p>
-                </div>
-            )}
-            {atividadesProgramadas && atividadesProgramadas.length > 0 && (
-                <div className="mt-4">
-                    <h2 className="text-lg text-black font-semibold mb-2">Atividades programadas:</h2>
-                    <ul className="list-disc list-inside text-gray-600 mb-4">
-                        {atividadesProgramadas.map((atividade, index) => (
-                            <li key={index}>{atividade}</li>
-                        ))}
-                    </ul>
-                </div>
-            )}
-            {anexos && anexos.length > 0 && (
-                <div className="mt-4">
-                    <h2 className="text-lg text-black font-semibold mb-2">Anexos</h2>
-                    <div className="flex flex-wrap gap-2">
-                        {anexos.map((anexo, index) => (
-                            <div key={index} className="border border-gray-300 text-black p-2 rounded text-sm">{anexo}</div>
-                        ))}
-                    </div>
-                </div>
-            )}
         </div>
     );
 }

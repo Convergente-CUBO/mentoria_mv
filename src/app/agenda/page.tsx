@@ -8,7 +8,7 @@ import { Nullable } from "primereact/ts-helpers";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
-import SessionCardMinimal from "../components/UI/Session/SessionCardMin";
+import SessionCardMinimal from "../components/UI/Session/SessionCardMentoriasResumi";
 
 export default function AgendaPage() {
   const [selectedDate, setSelectedDate] = useState<Nullable<Date>>(null);
